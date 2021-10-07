@@ -1,0 +1,60 @@
+%input your year first with checking 
+prompt = 'please input your year ';
+year = input(prompt);
+B=0001:9999;
+if ismember(year,B) 
+else
+    fprintf('error')
+end 
+%input your month and do checking 
+prompt = 'please input your month';
+month = input(prompt);
+B=1:12;
+if ismember(month,B)
+else
+   fprintf('error')
+end
+%input your day number and do a relatively complex checking (include leap year)
+prompt = 'please input your day number';
+day=input(prompt);
+jiyue=[1,3,5,7,8,10,12];
+ouyue=[4,6,9,11];
+if ismember(month,jiyue)
+   if day<=31
+   else 
+       fprintf('error')
+   end 
+elseif ismember(month,ouyue)
+    if day<=30
+    else 
+        fprintf('error')
+    end
+else
+    if month==2
+        if mod(year,4)==0
+            if day<=29
+            else fprintf('error')
+            end
+        else 
+            if day<=28
+            else fprintf('error')
+            end
+        end
+    else 
+        fprintf('error')
+    end
+end
+%calcute Day of Week%
+yy = year;
+yy = num2str(yy);
+y=yy(3:4);
+c=yy(1:2);
+month9=month+9;
+%这里有个bug，公式转换太麻烦了，公式已知，计算星期几的那个
+%其他都没有问题
+w= (month +2.6*mod(month9,12) +2.08-+y +y/4 +c/4 -2*c);
+w= mod(w,7);
+Day_Week=char('Sunday', 'Monday', 'Tuesday', 'Wensday', 'Thursday', 'Friday', 'Saturady');
+Day_Week=Day_Week((w+1),:);
+%output result
+fprintf('%d %d %d is %s',month,day,year,Day_Week)
