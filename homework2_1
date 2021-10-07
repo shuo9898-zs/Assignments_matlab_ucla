@@ -1,0 +1,16 @@
+syms a b c d x r1 r2 f(x)
+f(x)=a*x.^3+b*x.^2+c*x+d;
+y=diff(f(x));
+if a==0 
+    return
+else if diff(f(r1))==0 && diff(f(r2))==0
+        fprintf(f(r1), f(r2), r1, r2)
+        if f(r1)*f(r2)<0
+        fprintf('simple')
+        else
+        fprintf('neither')
+        end
+    else 
+        fprintf('no root')
+    end
+end
